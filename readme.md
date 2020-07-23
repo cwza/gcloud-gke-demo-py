@@ -1,5 +1,5 @@
 # Google Kubernetes Engine Demo
->> Python Flask Server + Github Action + Google Kubernetes Engine
+>> Example of github-action that automatically deploy flask server to Google Kubernetes Engine
 
 ## Main Purpose
 * Simple flask server with simple test just for demo
