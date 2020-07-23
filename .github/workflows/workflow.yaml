@@ -46,5 +46,6 @@ jobs:
         run: |
           export TAG=`echo $GITHUB_REF | awk -F/ '{print $NF}'`
           sed -i "s/{TAG}/$TAG/g" gcloud_deployment.yaml
+          gcloud config set compute/zone us-central1-a
           gcloud container clusters get-credentials cluster-1
           kubectl apply -f gcloud_deployment.yaml
