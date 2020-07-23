@@ -1,4 +1,4 @@
-# Google Cloud Run Demo
+# Google Kubernetes Engine Demo
 >> Python Flask Server + Github Action + Google Kubernetes Engine
 
 ## Main Purpose
