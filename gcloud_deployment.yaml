@@ -1,0 +1,58 @@
+# This file configures the hello-world app which serves public web traffic.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gcloud-gke-demo-py
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gcloud-gke-demo-py
+  template:
+    metadata:
+      labels:
+        app: gcloud-gke-demo-py
+    spec:
+      containers:
+      - name: gcloud-gke-demo-py
+        image: us.gcr.io/play-263208/gcloud_gke_demo_py:{TAG}
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 5000
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 5000
+          initialDelaySeconds: 10
+          periodSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 5000
+          initialDelaySeconds: 10
+          periodSeconds: 5
+        env:
+        - name: app_port
+          value: "5000"
+
+---
+# The hello service provides a load-balancing proxy over the hello-app
+# pods. By specifying the type as a 'LoadBalancer', Kubernetes Engine will
+# create an external HTTP load balancer.
+apiVersion: v1
+kind: Service
+metadata:
+  name: gcloud-gke-demo-py
+spec:
+  type: LoadBalancer
+  selector:
+    app: gcloud-gke-demo-py
+  ports:
+  - port: 80
+    targetPort: 5000
