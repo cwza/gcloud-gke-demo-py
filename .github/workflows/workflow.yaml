@@ -31,12 +31,12 @@ jobs:
           version: '290.0.1'
           project_id: ${{ secrets.GCP_PROJECT_ID }}
           service_account_key: ${{ secrets.GCP_SA_KEY }}
-      - run: gcloud auth configure-docker -q
       - name: Deploy to Google Cloud Container Registry
         env:
             GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
             IMAGE_NAME: gcloud_gke_demo_py
         run: |
+          gcloud auth configure-docker -q
           export TAG=`echo $GITHUB_REF | awk -F/ '{print $NF}'`
           docker build -t us.gcr.io/$GCP_PROJECT_ID/$IMAGE_NAME:$TAG .
           docker push us.gcr.io/$GCP_PROJECT_ID/$IMAGE_NAME:$TAG
