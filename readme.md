@@ -3,7 +3,7 @@
 
 ## Demo Video
 I made a video for this demo using chinese.  
-[![](https://img.youtube.com/vi/sJksCtIBejE/0.jpg)](https://www.youtube.com/watch?v=sJksCtIBejE "")
+[![](https://img.youtube.com/vi/9GWNVZB5jZw/0.jpg)](https://www.youtube.com/watch?v=9GWNVZB5jZw "")
 
 ## Main Purpose
 * Simple flask server with simple test just for demo
